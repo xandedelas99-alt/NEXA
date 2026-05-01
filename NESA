@@ -1,0 +1,126 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "NEXA HUB",
+   Icon = 0,
+   LoadingTitle = "NEXA HUB",
+   LoadingSubtitle = "by Manus AI",
+   ShowText = "NEXA HUB",
+   Theme = "Default",
+   ToggleUIKeybind = "RightControl",
+   ConfigurationSaving = {
+      Enabled = true,
+      FileName = "NEXA_HUB_Config"
+   }
+})
+
+-- PVP Tab
+local PVPTab = Window:CreateTab("PVP", "swords") -- Usando um 铆cone de espadas para PVP
+
+-- Visual Tab
+local VisualTab = Window:CreateTab("Visual", "eye") -- Usando um 铆cone de olho para Visual
+
+Rayfield:LoadConfiguration()
+
+-- PVP Tab Elements
+local AimbotFullToggle = PVPTab:CreateToggle({
+   Name = "Aimbot Full",
+   CurrentValue = false,
+   Flag = "AimbotFull",
+   Callback = function(Value)
+      -- L贸gica para ativar/desativar o Aimbot Full
+      -- Implementar a l贸gica do Aimbot Full aqui
+      -- Exemplo: ativar/desativar o sistema de mira autom谩tica
+      if Value then
+          print("Aimbot Full ativado!")
+      else
+          print("Aimbot Full desativado!")
+          -- Se o Aimbot Full for desativado, desativar WallCheck tamb茅m
+          WallCheckToggle:Set(false)
+      end
+   end,
+})
+
+local FovSlider = PVPTab:CreateSlider({
+   Name = "FOV",
+   Range = {50, 360},
+   Increment = 1,
+   Suffix = " graus",
+   CurrentValue = 90,
+   Flag = "FOV",
+   Callback = function(Value)
+      -- L贸gica para ajustar o FOV
+      -- Implementar a l贸gica de ajuste do FOV aqui
+      -- Exemplo: ajustar o campo de vis茫o do aimbot
+      print("FOV ajustado para: " .. tostring(Value) .. " graus")
+   end,
+})
+
+local WallCheckToggle = PVPTab:CreateToggle({
+   Name = "WallCheck",
+   CurrentValue = false,
+   Flag = "WallCheck",
+   Callback = function(Value)
+      -- L贸gica para ativar/desativar o WallCheck
+      -- WallCheck s贸 deve funcionar se Aimbot Full estiver ativo
+      -- Implementar a l贸gica do WallCheck aqui
+      -- WallCheck s贸 deve funcionar se Aimbot Full estiver ativo
+      if not AimbotFullToggle.CurrentValue and Value then
+          print("WallCheck n茫o pode ser ativado sem Aimbot Full!")
+          WallCheckToggle:Set(false) -- For莽a a desativa莽茫o se Aimbot Full n茫o estiver ativo
+      elseif Value then
+          print("WallCheck ativado!")
+      else
+          print("WallCheck desativado!")
+      end
+   end,
+})
+
+-- Visual Tab Elements
+local EspCaixaToggle = VisualTab:CreateToggle({
+   Name = "ESP Caixa",
+   CurrentValue = false,
+   Flag = "EspCaixa",
+   Callback = function(Value)
+      -- L贸gica para ativar/desativar o ESP Caixa
+      -- Implementar a l贸gica do ESP Caixa aqui
+      -- Exemplo: desenhar caixas ao redor dos jogadores
+      if Value then
+          print("ESP Caixa ativado!")
+      else
+          print("ESP Caixa desativado!")
+      end
+   end,
+})
+
+local EspVidaToggle = VisualTab:CreateToggle({
+   Name = "ESP Vida",
+   CurrentValue = false,
+   Flag = "EspVida",
+   Callback = function(Value)
+      -- L贸gica para ativar/desativar o ESP Vida
+      -- Implementar a l贸gica do ESP Vida aqui
+      -- Exemplo: desenhar barras de vida acima dos jogadores
+      if Value then
+          print("ESP Vida ativado!")
+      else
+          print("ESP Vida desativado!")
+      end
+   end,
+})
+
+local EspLineToggle = VisualTab:CreateToggle({
+   Name = "ESP Line",
+   CurrentValue = false,
+   Flag = "EspLine",
+   Callback = function(Value)
+      -- L贸gica para ativar/desativar o ESP Line
+      -- Implementar a l贸gica do ESP Line aqui
+      -- Exemplo: desenhar linhas at茅 os jogadores
+      if Value then
+          print("ESP Line ativado!")
+      else
+          print("ESP Line desativado!")
+      end
+   end,
+})
